@@ -25,6 +25,8 @@ type Startup private () =
 
         // register DI services
         services.AddScoped<SongsRepository>() |> ignore
+        services.AddScoped<CommentsRepository>() |> ignore
+        services.AddScoped<RatingsRepository>() |> ignore
 
         // initialize database if needed
         SetupDB.initDB
