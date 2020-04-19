@@ -8,6 +8,7 @@ type Song() =
     let mutable _title: String = null
     let mutable _artist: String = null
     let mutable _genre: String = null
+    let mutable _path: String = null
 
     member this.Id
         with get() = _id
@@ -29,3 +30,7 @@ type Song() =
     member this.Genre
         with get() = _genre
         and set(v) = _genre <- v
+
+    member this.Path
+        with get() = _path
+        and set(v) = _path <- v
