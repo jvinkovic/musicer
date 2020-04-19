@@ -5,9 +5,9 @@ open System.IO
 
 let initDB =
     // if does not exists, create db file
-    if File.Exists(Repository.databaseFilename) = false then SQLiteConnection.CreateFile(Repository.databaseFilename)
+    if File.Exists(Common.databaseFilename) = false then SQLiteConnection.CreateFile(Common.databaseFilename)
 
-    use connection = new SQLiteConnection(Repository.connectionString)
+    use connection = new SQLiteConnection(Common.connectionString)
 
     connection.Open()
 
@@ -17,7 +17,9 @@ let initDB =
         "uploaded DATETIME, " +
         "title NVARCHAR(150), " +
         "artist NVARCHAR(150), " +
-        "genre NVARCHAR(150)); "
+        "genre NVARCHAR(150), " +
+        "file NVARCHAR(600)" +
+        "); "
         +
         "CREATE TABLE IF NOT EXISTS Comments (" +
         "id INTEGER primary key autoincrement, " +

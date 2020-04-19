@@ -2,17 +2,18 @@
 
 open Musicer
 open Microsoft.AspNetCore.Mvc
-open Microsoft.Extensions.Logging
+open Musicer.Repositories
 
 [<ApiController>]
 [<Route("[controller]")>]
-type RatingsController (logger : ILogger<RatingsController>) =
+type RatingsController (ratingsRepository: RatingsRepository) =
     inherit ControllerBase()
 
     [<HttpGet>]
     [<Route("{songId}")>]
-    member __.Get(songId: int) : SongRating[] =
-        [|
-            // todo get rtatings for a song
+    member __.GetAll(songId: int64) : SongRating[] =
+        ratingsRepository.GetRatings(songId) |> Seq.toArray
 
-        |]
+    [<HttpPost>]
+    member __.Post([<FromBody>] rating: SongRating) =
+        ratingsRepository.InsertRating(rating)

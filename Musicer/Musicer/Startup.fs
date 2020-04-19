@@ -7,6 +7,7 @@ open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
 
 open Microsoft.OpenApi.Models
+open Musicer.Repositories
 
 type Startup private () =
     new (configuration: IConfiguration) as this =
@@ -22,6 +23,9 @@ type Startup private () =
         // Add framework services.
         services.AddControllers() |> ignore
 
+        // register DI services
+        services.AddScoped<SongsRepository>() |> ignore
+
         // initialize database if needed
         SetupDB.initDB
 
@@ -33,8 +37,6 @@ type Startup private () =
             app.UseSwaggerUI(fun config -> config.SwaggerEndpoint("/swagger/v1/swagger.json", "Musicer API V1")) |> ignore
 
         app.UseRouting() |> ignore
-
-        app.UseAuthorization() |> ignore
 
         app.UseEndpoints(fun endpoints ->
             endpoints.MapControllers() |> ignore

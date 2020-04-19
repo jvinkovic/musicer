@@ -5,15 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="WeatherForecast.fs" />
+    <Compile Include="Common.fs" />
     <Compile Include="Rating.fs" />
     <Compile Include="Song.fs" />
     <Compile Include="SongRating.fs" />
     <Compile Include="Comment.fs" />
-    <Compile Include="Repository.fs" />
     <Compile Include="SetupDB.fs" />
+    <Compile Include="Repositories\RatingsRepository.fs" />
+    <Compile Include="Repositories\CommentsRepository.fs" />
+    <Compile Include="Repositories\SongsRepository.fs" />
     <Compile Include="Controllers\RatingsController.fs" />
-    <Compile Include="Controllers\WeatherForecastController.fs" />
     <Compile Include="Controllers\CommentsController.fs" />
     <Compile Include="Controllers\SongsController.fs" />
     <Compile Include="Startup.fs" />

@@ -1,19 +1,19 @@
 ﻿namespace Musicer.Controllers
 
 open Microsoft.AspNetCore.Mvc
-open Microsoft.Extensions.Logging
+open Musicer.Repositories
 open Musicer
 
 [<ApiController>]
 [<Route("[controller]")>]
-type CommentsController (logger : ILogger<CommentsController>) =
+type CommentsController (commentsRepository: CommentsRepository) =
     inherit ControllerBase()
-
-    let summaries = [| "Freezing"; "Bracing"; "Chilly"; "Cool"; "Mild"; "Warm"; "Balmy"; "Hot"; "Sweltering"; "Scorching" |]
 
     [<HttpGet>]
     [<Route("{songId}")>]
-    member __.Get() : Comment[] =
-        [|
-            // get comments from DB
-        |]
+    member __.GetAll(songId: int64) : Comment[] =
+        commentsRepository.GetComments(songId) |> Seq.toArray
+
+    [<HttpPost>]
+    member __.Post([<FromBody>] comment: Comment) =
+        commentsRepository.InsertComment(comment)
