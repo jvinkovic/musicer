@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="WeatherForecast.fs" />
+    <Compile Include="Rating.fs" />
+    <Compile Include="Song.fs" />
+    <Compile Include="SongRating.fs" />
+    <Compile Include="Comment.fs" />
+    <Compile Include="Repository.fs" />
+    <Compile Include="SetupDB.fs" />
+    <Compile Include="Controllers\RatingsController.fs" />
+    <Compile Include="Controllers\WeatherForecastController.fs" />
+    <Compile Include="Controllers\CommentsController.fs" />
+    <Compile Include="Controllers\SongsController.fs" />
+    <Compile Include="Startup.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.1" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.112" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,23 @@
+F#
+web service as per image sent right before this offer.
+ - users can upload audio
+ - users can comment on each upload
+ - users can put 1-5 rating fro each audio
+ - users can search for audio by: name, length, rating, genre, artist
+ - NO log in or registration, no authorization
+
+frontend:
+ - just to show that service works
+ - no fancy design
+ - just showing that  above functionalities are working
+ - jquery as basis
+
+database
+ - simplest possible for web service data
+ - e.g. SQLite
+
+word
+ - explanation on how it works and what code does - some methods explained
+ - without explaining basci programming concepts
+
+What is not mentioned here will not be implemented, of course.

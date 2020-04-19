@@ -1,0 +1,78 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Projekti\\GIT\\transferrepo01\\hasana7\\Musicer\\Musicer\\Musicer.fsproj": {}
+  },
+  "projects": {
+    "D:\\Projekti\\GIT\\transferrepo01\\hasana7\\Musicer\\Musicer\\Musicer.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projekti\\GIT\\transferrepo01\\hasana7\\Musicer\\Musicer\\Musicer.fsproj",
+        "projectName": "Musicer",
+        "projectPath": "D:\\Projekti\\GIT\\transferrepo01\\hasana7\\Musicer\\Musicer\\Musicer.fsproj",
+        "packagesPath": "C:\\Users\\Josip\\.nuget\\packages\\",
+        "outputPath": "D:\\Projekti\\GIT\\transferrepo01\\hasana7\\Musicer\\Musicer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Josip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "FSharp.Core": {
+              "target": "Package",
+              "version": "[4.7.1, )",
+              "generatePathProperty": true
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.3.1, )",
+              "generatePathProperty": true
+            },
+            "System.Data.SQLite": {
+              "target": "Package",
+              "version": "[1.0.112, )",
+              "generatePathProperty": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
