@@ -3,7 +3,6 @@
 open Musicer
 open Microsoft.AspNetCore.Mvc
 open Musicer.Repositories
-open Microsoft.AspNetCore.Cors
 
 [<ApiController>]
 [<Route("[controller]")>]

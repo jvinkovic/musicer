@@ -2,6 +2,7 @@
 
 open System.Data.SQLite
 open Musicer
+open System
 
 type CommentsRepository() =
     member __.GetComments(songId: int64) = seq {
@@ -13,16 +14,19 @@ type CommentsRepository() =
         use reader = selectCommand.ExecuteReader()
 
         while reader.Read() do
-            yield new Comment(text = reader.["Text"].ToString(),
-                songId = System.Convert.ToInt32(reader.["SongId"]),
-                date = System.Convert.ToDateTime(reader.["Date"])
-            )
+                let comment =  new Comment()
+                comment.Text <- reader.["Text"].ToString()
+                comment.SongId <- System.Convert.ToInt64(reader.["SongId"])
+                comment.Date <- System.Convert.ToDateTime(reader.["Date"])
+
+                yield comment
         }
 
     member __.InsertComment(comment: Comment) =
         let connection = new SQLiteConnection(Common.connectionString)
         connection.Open()
 
+        comment.Date <- DateTime.UtcNow;
         let insertSql =
             "insert into comments (date,Text,SongId) VALUES('" + comment.Date.ToString(Common.dateTimeFormat) + "','" + comment.Text + "'," + comment.SongId.ToString() + ")"
         use insertCommand = new SQLiteCommand(insertSql, connection)

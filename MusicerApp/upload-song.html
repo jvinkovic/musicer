@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Musicer Test App</title>
+
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <nav class="nav nav-pills nav-tabs nav-fill">
+            <a class="nav-item nav-link" href="index.html">Songs</a>
+            <a class="nav-item nav-link active" href="upload-song.html">Upload song</a>
+        </nav>
+
+        <br>
+        <div class="container">
+            <div class="row" id="uploadMsg" style="display: none;">
+                Please wait. Uploading...
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <form id="fileinfo" enctype="multipart/form-data" method="post" name="fileinfo">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">File</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" accept="audio/mp3,.mp3" class="custom-file-input" id="customFile" required>
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="song-title">Title</label>
+                                <input type="text" class="form-control" id="song-title" name="title" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="song-artist">Artist</label>
+                                <input type="text" class="form-control" id="song-artist" name="artist" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="song-genre">Genre</label>
+                                <input type="text" class="form-control" id="song-genre" name="genre" required>
+                            </div>
+                        </div>
+
+                        <button id="uploadBtn" type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script src="script.js"></script>
+    </body>
+</html>

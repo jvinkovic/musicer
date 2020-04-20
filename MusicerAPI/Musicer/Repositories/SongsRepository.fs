@@ -64,8 +64,11 @@ type SongsRepository(webHostEnvironment: IWebHostEnvironment) =
             file <- reader.["File"].ToString()
 
         let contentRootPath = webHostEnvironment.ContentRootPath;
-        let path = Path.Combine(contentRootPath, "App_Data", file)
-        File.OpenRead(path)
+        if file.Length = 0 then
+            null
+        else
+            let path = Path.Combine(contentRootPath, "App_Data", file)
+            File.OpenRead(path)
 
     member __.InsertSong(song: Song): Song =
         let connection = new SQLiteConnection(Common.connectionString)

@@ -6,21 +6,29 @@
         <title>Musicer Test App</title>
 
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         <link href="style.css" rel="stylesheet">
     </head>
     <body>
 
-        <nav class="navbar sticky-top navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">Songs</a>
-            <a class="navbar-brand" href="upload-song.html">Upload song</a>
+        <nav class="nav nav-pills nav-tabs nav-fill">
+            <a class="nav-item nav-link active" href="index.html">Songs</a>
+            <a class="nav-item nav-link" href="upload-song.html">Upload song</a>
         </nav>
 
         <br>
 
-        <div id="accordion">
+        <div class="container">
+            <div class="row" id="loadMsg"></div>
+                <h3 class="text-center" style="margin: auto;">Please wait. Loading songs...</h3>
+            </div>
         </div>
 
+        <br>
+
+        <div id="accordion">
+
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -29,6 +37,10 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
-        <script src="script.js" defer></script>
+        <script src="script.js"></script>
+
+        <script>
+            getSongs();
+        </script>
     </body>
 </html>
