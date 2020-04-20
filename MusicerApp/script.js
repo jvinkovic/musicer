@@ -1,27 +1,31 @@
 function getSongs() {
   $.get('http://localhost:11870/songs', function (data) {
-    makeSongsList(JSON.parse(data));
+    makeSongsList(data);
   });
 }
 
 function getComments(songId) {
-  $.get('http://localhost:11870/comments/' + songId, function (data) {
-    return JSON.parse(data);
+  return new Promise((resolve) => {
+    $.get('http://localhost:11870/comments/' + songId, function (data) {
+      resolve(data);
+    }).then((data) => data);
   });
 }
 
 function getRatings(songId) {
-  $.get('http://localhost:11870/ratings/' + songId, function (data) {
-    return JSON.parse(data);
+  return new Promise((resolve) => {
+    $.get('http://localhost:11870/ratings/' + songId, function (data) {
+      resolve(data);
+    }).then((data) => data);
   });
 }
 
-function makeSongsList(data) {
+async function makeSongsList(data) {
   var accordion = $('#accordion');
   for (var i = 0; i < data.length; i++) {
     var song = data[i];
 
-    var comments = getComments(song.id);
+    var comments = (await getComments(song.id)) || [];
 
     var commentsP = [];
     for (var j = 0; j < comments.length; j++) {
@@ -30,26 +34,33 @@ function makeSongsList(data) {
       commentsP.push(p);
     }
 
-    var ratings = getRatings(song.id);
+    var ratings = (await getRatings(song.id)) || [];
 
-    var ratingsIL = [];
+    var ratingsLI = [];
     for (var j = 0; j < ratings.length; j++) {
-      var il = `<il>${ratings[j].text}</il>`;
+      var star = `<i class="fas fa-star"></i>`;
 
-      ratingsIL.push(p);
+      var li = '';
+      for (var k = 0; k < ratings[j].rating; k++) {
+        li = li + star;
+      }
+      ratingsLI.push('<li>' + li + '</li>');
     }
 
+    var collapseId = 'song' + song.id;
+    var collapseHeadId = 'songHead' + song.id;
+
     var card = `<div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                aria-controls="collapseOne">
-                                    ${song.title} - ${song.artist}
+                    <div class="card-header" id="${collapseHeadId}">
+                        <div class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#${collapseId}" aria-expanded="false"
+                                aria-controls="${collapseId}">
+                                    <h2>${song.title} - ${song.artist}</h2>
                             </button>
-                        </h5>
+                        </div>
                     </div>
 
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div id="${collapseId}" class="collapse" aria-labelledby="${collapseHeadId}" data-parent="#accordion">
                         <div class="card-body">
                             <div class="container">
                                 <div class="row">
@@ -60,17 +71,17 @@ function makeSongsList(data) {
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12 comments">
                                         <header>
-                                            <h3>Comments</h3>
+                                            <h4>Comments</h4>
                                             <div class="comments-list">
-                                                ${commentsP}
+                                                ${commentsP.join('')}
                                             </div>
                                         </header>
                                     </div>
                                     <div class="col-md-6 col-sm-12 ratings">
                                         <header>
-                                            <h3>Ratings</h3>
+                                            <h4>Ratings</h4>
                                             <ul class="ratings-list">
-                                                ${ratingsIL}
+                                                ${ratingsLI.join('')}
                                             </ul>
                                         </header>
                                     </div>
@@ -80,10 +91,8 @@ function makeSongsList(data) {
                     </div>
                 </div>`;
 
-    accordion.appendChild(card);
+    accordion.append(card);
   }
 }
 
-$(document).ready(function () {
-  getSongs();
-});
+getSongs();

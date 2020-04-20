@@ -7,6 +7,7 @@ open System.IO
 open Microsoft.AspNetCore.Http
 open System
 open Musicer.Repositories
+open Microsoft.AspNetCore.Cors
 
 [<ApiController>]
 [<Route("[controller]")>]

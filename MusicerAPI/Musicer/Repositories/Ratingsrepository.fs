@@ -2,6 +2,7 @@
 
 open System.Data.SQLite
 open Musicer
+open System
 
 type RatingsRepository() =
     member __.GetRatings(songId: int64) = seq {
@@ -13,13 +14,18 @@ type RatingsRepository() =
         use reader = selectCommand.ExecuteReader()
 
         while reader.Read() do
-            yield new SongRating(rating = (System.Enum.Parse(typedefof<Rating>, reader.["Rating"].ToString()) :?> Rating),
-                songId = System.Convert.ToInt32(reader.["SongId"]),
-                created = System.Convert.ToDateTime(reader.["Created"])
-            )
+            let rating = new SongRating()
+            rating.Id <- System.Convert.ToInt64(reader.["Id"])
+            rating.Created <- System.Convert.ToDateTime(reader.["Created"])
+            rating.SongId <- System.Convert.ToInt64(reader.["SongId"])
+            rating.Rating <- System.Convert.ToInt32(reader.["Rating"])
+
+            yield rating
         }
 
     member __.InsertRating(rating: SongRating) =
+        rating.Created <- DateTime.UtcNow
+
         let connection = new SQLiteConnection(Common.connectionString)
         connection.Open()
 

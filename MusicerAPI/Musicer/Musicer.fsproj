@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Compile Include="Common.fs" />
-    <Compile Include="Rating.fs" />
     <Compile Include="Song.fs" />
     <Compile Include="SongRating.fs" />
     <Compile Include="Comment.fs" />

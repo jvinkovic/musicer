@@ -1,5 +1,15 @@
 namespace Musicer
 
+open Microsoft.AspNetCore.Cors.Infrastructure
+
+module ConfigurationCors =
+    let ConfigureCors(corsBuilder: CorsPolicyBuilder): unit =        
+        corsBuilder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod() |> ignore
+
+
+
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Configuration
@@ -8,6 +18,9 @@ open Microsoft.Extensions.Hosting
 
 open Microsoft.OpenApi.Models
 open Musicer.Repositories
+
+open ConfigurationCors
+
 
 type Startup private () =
     new (configuration: IConfiguration) as this =
@@ -37,6 +50,9 @@ type Startup private () =
             app.UseDeveloperExceptionPage() |> ignore
             app.UseSwagger() |> ignore
             app.UseSwaggerUI(fun config -> config.SwaggerEndpoint("/swagger/v1/swagger.json", "Musicer API V1")) |> ignore
+
+        app.UseCors() |> ignore
+        app.UseCors(ConfigureCors) |> ignore
 
         app.UseRouting() |> ignore
 
